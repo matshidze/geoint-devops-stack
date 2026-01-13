@@ -54,10 +54,17 @@ def create_app(testing: bool = False) -> Flask:
 
     return app
 
-app = create_app(testing=False)
+#app = create_app(testing=False)
+
+
+def create_app_for_gunicorn():
+    return create_app(testing=False)
+
 
 if __name__ == "__main__":
+    import os
     # Bind safely: default to 127.0.0.1 for local dev; override via APP_HOST in containers.
     host = os.getenv("APP_HOST", "127.0.0.1")
     port = int(os.getenv("APP_PORT", "5000"))
-    app.run(host=host, port=port)
+    create_app(testing=False).run(host=host, port=port)
+

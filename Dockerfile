@@ -21,4 +21,6 @@ EXPOSE 5000
 USER geointuseruser
 
 ENTRYPOINT ["/app/entrypoint.sh"]
-CMD ["gunicorn", "-b", "0.0.0.0:5000", "app.app:app", "--workers", "2", "--threads", "4"]
+
+CMD ["gunicorn", "-b", "0.0.0.0:5000", "app.app:create_app_for_gunicorn()", "--workers", "2", "--threads", "4"]
+
