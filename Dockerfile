@@ -12,11 +12,13 @@ COPY app /app/app
 COPY docker/entrypoint.sh /app/entrypoint.sh
 RUN chmod +x /app/entrypoint.sh
 
+ENV PYTHONPATH=/app
+
 ENV PYTHONUNBUFFERED=1
 ENV APP_HOST=0.0.0.0
 EXPOSE 5000
 
-USER appuser
+USER geointuseruser
 
 ENTRYPOINT ["/app/entrypoint.sh"]
 CMD ["gunicorn", "-b", "0.0.0.0:5000", "app.app:app", "--workers", "2", "--threads", "4"]
