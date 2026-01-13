@@ -1,5 +1,5 @@
 from datetime import datetime
-from .db import db
+from app.db import db
 
 class Submission(db.Model):
     __tablename__ = "submissions"

@@ -1,8 +1,8 @@
 import os
 from flask import Flask, render_template, request, redirect
 from prometheus_client import Counter, Histogram, generate_latest, CONTENT_TYPE_LATEST
-from .db import db, database_uri
-from .models import Submission
+from app.db import db, database_uri
+from app.models import Submission
 
 REQUESTS = Counter("http_requests_total", "Total HTTP requests", ["method", "endpoint", "status"])
 REQ_LATENCY = Histogram("http_request_latency_seconds", "Request latency", ["endpoint"])
