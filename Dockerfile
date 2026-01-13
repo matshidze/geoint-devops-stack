@@ -18,7 +18,7 @@ ENV PYTHONUNBUFFERED=1
 ENV APP_HOST=0.0.0.0
 EXPOSE 5000
 
-USER geointuseruser
+USER geointuser
 
 ENTRYPOINT ["/app/entrypoint.sh"]
 

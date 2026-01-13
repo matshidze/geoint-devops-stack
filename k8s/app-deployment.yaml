@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: geoint-app
+  namespace: geoint
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: geoint-app
+  template:
+    metadata:
+      labels:
+        app: geoint-app
+    spec:
+      containers:
+        - name: geoint-app
+          image: geoint-devops-stack-app:1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000
+          envFrom:
+            - configMapRef:
+                name: app-config
+            - secretRef:
+                name: app-secrets
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 5000
+            initialDelaySeconds: 15
+            periodSeconds: 10
