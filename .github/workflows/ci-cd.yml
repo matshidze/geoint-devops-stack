@@ -9,6 +9,8 @@ jobs:
   test:
     name: Test (pytest)
     runs-on: ubuntu-latest
+    env:
+      PYTHONPATH: ${{ github.workspace }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
