@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Last 5 Submissions</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 24px; max-width: 720px; }
+    form { display: flex; gap: 8px; margin-bottom: 18px; }
+    input[type="text"] { flex: 1; padding: 10px; }
+    button { padding: 10px 14px; cursor: pointer; }
+    .item { padding: 10px; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 8px; }
+    .meta { color: #666; font-size: 12px; margin-top: 4px; }
+  </style>
+</head>
+<body>
+  <h2>Simple Web App (Persisted)</h2>
+
+  <form method="POST" action="/submit">
+    <input name="text" type="text" maxlength="500" placeholder="Type something..." required />
+    <button type="submit">Submit</button>
+  </form>
+
+  <h3>Last 5 submissions</h3>
+  {% if submissions %}
+    {% for s in submissions %}
+      <div class="item">
+        <div>{{ s.text }}</div>
+        <div class="meta">{{ s.created_at }}</div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>No submissions yet.</p>
+  {% endif %}
+</body>
+</html>
